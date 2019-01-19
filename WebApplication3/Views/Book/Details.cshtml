@@ -1,0 +1,41 @@
+﻿@model DataAccess.Book
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Book</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+
+    </dl>
+@foreach (var item in Model.Review)
+{
+     @(Html.Partial("ReviewPartialDetails", item))
+}
+
+    @Html.ActionLink(linkText:"Add Review",actionName:"Create", controllerName:"Review",routeValues: new { BookID=Model.BookID },htmlAttributes: null)
+   
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BookID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
